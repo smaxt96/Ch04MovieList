@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ch04MovieList.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20200607200249_Genre")]
-    partial class Genre
+    [Migration("20200614215753_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

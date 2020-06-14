@@ -26,8 +26,8 @@ namespace Ch04MovieList
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<MovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
-            services.AddDbContext<ContactContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContactContext")));
+            services.AddDbContext<MovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
+            services.AddDbContext<ContactContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
