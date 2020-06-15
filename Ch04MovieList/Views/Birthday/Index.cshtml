@@ -1,0 +1,35 @@
+﻿@model Ch04MovieList.Models.BirthDateModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Age Calculator</h1>
+    <form asp-action="Index" method="post">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <label asp-for="FirstName">Name:</label>
+            <input asp-for="FirstName" />
+        </div>
+        <div>
+            <label asp-for="BirthDate">Birth date:</label>
+            <input asp-for="BirthDate" />
+        </div>
+        <div>
+            <label>Current Age:</label>
+            <input value="@ViewBag.Age" readonly />
+            <label>Name:</label>
+            <input value="@ViewBag.Name" readonly />
+        </div>
+        <button type="submit">Calculate</button>
+        <a asp-action="Index">Clear</a>
+    </form>
+</body>
+</html>
