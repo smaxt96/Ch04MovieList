@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Birthday\" />
+    <Folder Include="Areas\Module1\Views\Birthday\" />
   </ItemGroup>
 
 </Project>

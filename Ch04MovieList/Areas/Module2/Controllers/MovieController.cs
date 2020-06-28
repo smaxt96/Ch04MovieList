@@ -7,8 +7,9 @@ using Ch04MovieList.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ch04MovieList.Controllers
+namespace Ch04MovieList.Areas.Module2.Controllers
 {
+    [Area("Module2")]
     public class MovieController : Controller
     {
         private MovieContext context { get; set; }
@@ -18,22 +19,22 @@ namespace Ch04MovieList.Controllers
             context = ctx;
         }
 
-        [HttpGet]
-       public IActionResult Add()
+        [Route("movie/add")]
+        [Route("movie/edit/{id}")]
+        public IActionResult EditForm(int id)
         {
             ViewBag.Action = "Add";
             ViewBag.Genres = context.Genres.OrderBy(g => g.Name).ToList();
-            return View("Edit", new Movie());
+
+            var movie = new Movie();
+            if(id > 0)
+            {
+                movie = context.Movies.Find(id);
+                ViewBag.Action = "Edit";
+            }
+            return View("Edit", movie);
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.Action = "Edit";
-            ViewBag.Genres = context.Genres.OrderBy(g => g.Name).ToList();
-            var movie = context.Movies.Find(id);
-            return View(movie);
-        }
 
         [HttpPost]
         public IActionResult Edit(Movie movie)
@@ -45,7 +46,7 @@ namespace Ch04MovieList.Controllers
                 else
                     context.Movies.Update(movie);
                 context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Movie");
             } else
             {
                 ViewBag.Action = (movie.MovieId == 0) ? "Add" : "Edit";
@@ -66,7 +67,7 @@ namespace Ch04MovieList.Controllers
         {
             context.Movies.Remove(movie);
             context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Movie");
         }
         public IActionResult Index()
         {

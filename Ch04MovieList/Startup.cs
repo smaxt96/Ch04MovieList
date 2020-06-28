@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Ch04MovieList.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Ch04MovieList.Models;
 
 namespace Ch04MovieList
 {
@@ -57,6 +52,31 @@ namespace Ch04MovieList
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                  name: "admin",
+                  areaName: "Admin",
+                  pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                 name: "module1",
+                 areaName: "Module1",
+                 pattern: "Module1/{controller=Birthday}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                 name: "module2",
+                 areaName: "Module2",
+                 pattern: "Module2/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                  name: "module5",
+                  areaName: "Module5",
+                  pattern: "Module5/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                 name: "module5",
+                 areaName: "Module5",
+                 pattern: "Module5/{controller=DummyRule}/{action=Index}/{name}/Module{num}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

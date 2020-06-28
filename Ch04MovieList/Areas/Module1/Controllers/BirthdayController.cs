@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Ch04MovieList.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ch04MovieList.Controllers
+namespace Ch04MovieList.Areas.Module1.Controllers
 {
+    [Area("Module1")]
     public class BirthdayController : Controller
     {
         [HttpGet]

@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Module 5 Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <ul>
+        <li>
+            <a asp-area="module5" asp-controller="dummydefault" asp-action="index">Default Routing Assignment</a>
+        </li>
+        <li>
+            <a href="/module5/dummyattribute/custom">Custom Routing Attribute Assignment</a>
+        </li>
+        <li>
+            <a href="/module5/dummyrule/index/rule/module5">Custom Routing Rule Assignment</a>
+        </li>
+    </ul>

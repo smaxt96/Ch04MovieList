@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Ch04MovieList.Models;
 
-namespace Ch04MovieList.Controllers
+namespace Ch04MovieList.Areas.Module5.Controllers
 {
-    public class HomeController : Controller
+    [Area("Module5")]
+    public class DummyDefaultController : Controller
     {
         public IActionResult Index()
         {

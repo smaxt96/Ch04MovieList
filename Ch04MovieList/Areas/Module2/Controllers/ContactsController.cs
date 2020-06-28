@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Ch04MovieList.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ch04MovieList.Controllers
+namespace Ch04MovieList.Areas.Module2.Controllers
 {
+    [Area("Module2")]
     public class ContactsController : Controller
     {
         private ContactContext context { get; set; }
