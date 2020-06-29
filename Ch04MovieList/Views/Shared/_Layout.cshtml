@@ -19,16 +19,26 @@
                         <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="module1" asp-controller="birthday" asp-action="index">Module1</a>
+                        <a class="nav-link" asp-area="about" asp-controller="home" asp-action="index">About</a>
                     </li>
                     <li>
-                        <a class="nav-link" asp-area="module2" asp-controller="home" asp-action="index">Module2</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" asp-area="module5" asp-controller="home" asp-action="index">Module5</a>
+                        <a class="nav-link" asp-area="contact" asp-controller="home" asp-action="index">Contact</a>
                     </li>
                     <li>
                         <a class="nav-link" asp-area="admin" asp-controller="home" asp-action="index">Admin</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Assignments
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-area="module1" asp-controller="birthday" asp-action="index">Assignment 1.1</a>
+                            <a class="dropdown-item" asp-area="module2" asp-controller="movie" asp-action="index">Assignment 2.1</a>
+                            <a class="dropdown-item" asp-area="module2" asp-controller="contacts" asp-action="index">Assignment 2.2</a>
+                            <a class="dropdown-item" asp-area="module5" asp-controller="home" asp-action="index">Assignment 5.1</a>
+                            <a class="dropdown-item" asp-area="module6" asp-controller="students" asp-action="index" asp-route-accessLevel="0">Assignment 6.1</a>
+                            <a class="dropdown-item" asp-area="module7" asp-controller="olympic" asp-action="index">Assignment 7.1</a>
+                        </div>
                     </li>
                 </ul>
             </div>

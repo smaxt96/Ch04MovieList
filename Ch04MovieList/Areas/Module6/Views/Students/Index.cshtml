@@ -1,0 +1,18 @@
+﻿@model Ch04MovieList.Models.StudentViewModel
+@{
+    ViewData["Title"] = "Assignment 6.1 Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (@Model.AccessLevel < 2)
+{
+    @await Html.PartialAsync("_NoAccess.cshtml")
+}
+else if (@Model.AccessLevel > 2 && @Model.AccessLevel < 8)
+{
+    @await Html.PartialAsync("_LimitedAccess.cshtml", @Model)
+}
+else
+{
+    @await Html.PartialAsync("_AdminAccess.cshtml", @Model)
+}

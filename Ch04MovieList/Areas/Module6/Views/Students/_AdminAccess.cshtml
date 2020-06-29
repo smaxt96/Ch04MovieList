@@ -1,0 +1,21 @@
+﻿@model Ch04MovieList.Models.StudentViewModel
+<h1>Hello Admin</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var students in @Model.Students)
+        {
+            <tr>
+                <td>@students.FirstName</td>
+                <td>@students.LastName</td>
+                <td>@students.Grade</td>
+            </tr>
+        }
+    </tbody>
+</table>

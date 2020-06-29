@@ -77,6 +77,16 @@ namespace Ch04MovieList
                  areaName: "Module5",
                  pattern: "Module5/{controller=DummyRule}/{action=Index}/{name}/Module{num}");
 
+                endpoints.MapAreaControllerRoute(
+                name: "module6",
+                areaName: "Module6",
+                pattern: "Module6/{controller=Student}/{action=Index}/{accessLevel}");
+
+                endpoints.MapAreaControllerRoute(
+               name: "module7",
+               areaName: "Module7",
+               pattern: "Module7/{controller}/{action}/cat/{activeCat}/game/{activeGame}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

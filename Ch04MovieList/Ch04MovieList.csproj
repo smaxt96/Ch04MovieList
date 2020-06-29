@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\About\Controllers\" />
+    <Folder Include="Areas\About\Views\" />
+    <Folder Include="Areas\Contact\Controllers\" />
+    <Folder Include="Areas\Contact\Views\" />
     <Folder Include="Areas\Module1\Views\Birthday\" />
   </ItemGroup>
 
