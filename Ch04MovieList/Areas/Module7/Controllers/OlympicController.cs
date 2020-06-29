@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ch04MovieList.Models;
+using Ch04MovieList.Models.Olympics;
 using Microsoft.AspNetCore.Mvc;
-using static Ch04MovieList.Models.OlympicsModel;
 
 namespace Ch04MovieList.Areas.Module7.Controllers
 {
+    [Area("Module7")]
     public class OlympicController : Controller
     {
         private CountryContext context;

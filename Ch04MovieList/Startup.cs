@@ -1,10 +1,14 @@
 using Ch04MovieList.Models;
+using Ch04MovieList.Models.Olympics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace Ch04MovieList
 {
@@ -23,6 +27,7 @@ namespace Ch04MovieList
             services.AddControllersWithViews();
             services.AddDbContext<MovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
+            services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -44,7 +49,12 @@ namespace Ch04MovieList
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                            Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
+                RequestPath = new PathString("/Images")
+            });
 
             app.UseRouting();
 
@@ -85,7 +95,7 @@ namespace Ch04MovieList
                 endpoints.MapAreaControllerRoute(
                name: "module7",
                areaName: "Module7",
-               pattern: "Module7/{controller}/{action}/cat/{activeCat}/game/{activeGame}");
+               pattern: "Module7/{controller}/{action}/cat/{activeCat=all}/game/{activeGame=all}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

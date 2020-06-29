@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Ch04MovieList.Models.OlympicsModel;
 
-namespace Ch04MovieList.Models
+namespace Ch04MovieList.Models.Olympics
 {
     public class OlympicsViewModel
     {

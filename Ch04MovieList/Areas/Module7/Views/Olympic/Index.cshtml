@@ -1,6 +1,7 @@
-﻿@model Ch04MovieList.Models.OlympicsViewModel
+﻿@model Ch04MovieList.Models.Olympics.OlympicsViewModel
 @{
     ViewData["Title"] = "Olympic Teams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 <div class="row">
@@ -35,7 +36,7 @@
             @foreach (var country in Model.Countries)
             {
             <li class="list-inline-item">
-                <img src="~/Areas/Module7/Images/@country.FlagImage" alt="@country.Name" title="@country.Name | @country.Category.Name @country.Game.Name" />
+                <img src="~/Images/@country.FlagImage" alt="@country.Name" title="@country.Name | @country.Category.Name @country.Game.Name" />
             </li>
             }
         </ul>
