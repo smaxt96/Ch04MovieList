@@ -49,12 +49,7 @@ namespace Ch04MovieList
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(
-                            Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
-                RequestPath = new PathString("/Images")
-            });
+            app.UseStaticFiles();
 
             app.UseRouting();
 
