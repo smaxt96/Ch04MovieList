@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ch04MovieList</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="about" asp-controller="home" asp-action="index">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-area="contact" asp-controller="home" asp-action="index">Contact</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-area="admin" asp-controller="home" asp-action="index">Admin</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Assignments
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-area="module1" asp-controller="birthday" asp-action="index">Assignment 1.1</a>
+                            <a class="dropdown-item" asp-area="module2" asp-controller="movie" asp-action="index">Assignment 2.1</a>
+                            <a class="dropdown-item" asp-area="module2" asp-controller="contacts" asp-action="index">Assignment 2.2</a>
+                            <a class="dropdown-item" asp-area="module5" asp-controller="home" asp-action="index">Assignment 5.1</a>
+                            <a class="dropdown-item" asp-area="module6" asp-controller="students" asp-action="index" asp-route-accessLevel="0">Assignment 6.1</a>
+                            <a class="dropdown-item" asp-area="module7" asp-controller="home" asp-action="index">Assignment 7.1</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="text-center">
+            @* show any message in TempData *@
+            @if (TempData["message"] != null)
+            {
+                <h4 class="bg-success p-2">@TempData["message"]</h4>
+            }
+
+            @* show link to Favorites page unless on Favorites page *@
+            @if (!ViewContext.View.Path.Contains("Favorites"))
+            {
+                var session = new OlympicsSession(Context.Session);
+                <h5 class="bg-info p-2">
+                    <a asp-area="module7" asp-controller="favorites" asp-action="index"
+                       class="text-white">My Favorite Countries</a>
+                    @* display number of fav teams in badge *@
+                    <span class="badge badge-light">
+                        @(session.GetMyCountryCount())
+                    </span>
+                </h5>
+            }
+        </div>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Ch04MovieList - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

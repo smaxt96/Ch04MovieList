@@ -1,7 +1,7 @@
 ﻿@model Ch04MovieList.Models.Olympics.CountryListViewModel
 @{
     ViewData["Title"] = "Olympic Teams";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Module7/Views/Shared/_Layout.cshtml";
 
 }
 <div class="row">
@@ -36,15 +36,9 @@
             @foreach (var country in Model.Countries)
             {
             <li class="list-inline-item">
-                <form asp-action="Details" method="post">
-                    <button class="bg-white border-0" type="submit">
+                <a asp-action="Details"asp-route-id="@country.CountryID">
                         <img src="~/images/@country.FlagImage" alt="@country.Name" title="@country.Name | @country.Category.Name @country.Game.Name" />
-                    </button>
-
-                    <input type="hidden" asp-for="@country.CountryID" />
-                    <input type="hidden" asp-for="ActiveCat" />
-                    <input type="hidden" asp-for="ActiveGame" />
-                </form>
+                </a>
             </li>
             }
         </ul>

@@ -24,6 +24,8 @@ namespace Ch04MovieList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddDbContext<MovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
@@ -54,7 +56,7 @@ namespace Ch04MovieList
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
@@ -86,6 +88,11 @@ namespace Ch04MovieList
                 name: "module6",
                 areaName: "Module6",
                 pattern: "Module6/{controller=Student}/{action=Index}/{accessLevel}");
+
+                endpoints.MapAreaControllerRoute(
+             name: "module7",
+             areaName: "Module7",
+             pattern: "Module7/{controller}/{action}/{id?}");
 
                 endpoints.MapAreaControllerRoute(
                name: "module7",
