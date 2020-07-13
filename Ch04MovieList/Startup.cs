@@ -1,5 +1,6 @@
 using Ch04MovieList.Models;
 using Ch04MovieList.Models.Olympics;
+using Ch04MovieList.Models.Ticket;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,7 @@ namespace Ch04MovieList
             services.AddDbContext<MovieContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
+            services.AddDbContext<TicketContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -97,7 +99,12 @@ namespace Ch04MovieList
                 endpoints.MapAreaControllerRoute(
                name: "module7",
                areaName: "Module7",
-               pattern: "Module7/{controller}/{action}/cat/{activeCat=all}/game/{activeGame=all}");
+               pattern: "Module7/{controller}/{action}/cat/{activeCat}/game/{activeGame}");
+
+                endpoints.MapAreaControllerRoute(
+              name: "module9",
+              areaName: "Module9",
+              pattern: "Module9/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Ch04MovieList.Models.Olympics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Ch04MovieList.Areas.Module7.Controllers
 {
@@ -18,11 +19,11 @@ namespace Ch04MovieList.Areas.Module7.Controllers
             context = ctx;
         }
 
-        public ViewResult Index(string activeCat = "all", string activeGame = "all")
+        public ViewResult Index(CountryListViewModel listModel)
         {
             var session = new OlympicsSession(HttpContext.Session);
-            session.SetActiveCat(activeCat);
-            session.SetActiveGame(activeGame);
+            session.SetActiveCat(listModel.ActiveCat);
+            session.SetActiveGame(listModel.ActiveGame);
 
             // if no count in session, get cookie and restore fave countries in session
             int? count = session.GetMyCountryCount();
@@ -39,21 +40,16 @@ namespace Ch04MovieList.Areas.Module7.Controllers
                 session.SetMyCountries(mycountries);
             }
 
-            var model = new CountryListViewModel
-            {
-                ActiveCat = activeCat,
-                ActiveGame = activeGame,
-                Categories = context.Categories.ToList(),
-                Games = context.Games.ToList()
-            };
-           
+            listModel.Categories = context.Categories.ToList();
+            listModel.Games = context.Games.ToList();
+
             IQueryable<Country> query = context.Countries;
-            if (activeCat != "all") query = query.Where(
-                t => t.Category.CategoryID.ToLower() == activeCat.ToLower());
-            if (activeGame != "all") query = query.Where(
-                t => t.Game.GameID.ToLower() == activeGame.ToLower());
-            model.Countries = query.ToList();
-            return View(model);
+            if (listModel.ActiveCat != "all") query = query.Where(
+                t => t.Category.CategoryID.ToLower() == listModel.ActiveCat.ToLower());
+            if (listModel.ActiveGame != "all") query = query.Where(
+                t => t.Game.GameID.ToLower() == listModel.ActiveGame.ToLower());
+            listModel.Countries = query.ToList();
+            return View(listModel);
 
         }
         [HttpPost]
